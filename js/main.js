@@ -158,3 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(fetchMarketData, REFRESH_INTERVAL);
     window.addEventListener('scroll', handleScroll);
 });
+
+window.addEventListener('scroll', function() {
+    const hero = document.querySelector('.hero');
+    const scrollPosition = window.scrollY;
+    
+    if (scrollPosition > 50) {
+        hero.classList.add('scrolled');
+    } else {
+        hero.classList.remove('scrolled');
+    }
+});

@@ -10,6 +10,7 @@ body {
     background-color: #000000;
     color: #B4DBCA;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 /* Barra de mercado */
@@ -70,8 +71,7 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-
-/* Hero section modificada */
+/* Hero Section */
 .hero {
     height: 100vh;
     display: flex;
@@ -80,65 +80,131 @@ body {
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding-top: 80px;
+    padding-top: 60px;
+    background-color: #000;
 }
 
-.title-container {
+/* Contenedor del mapa */
+.map-container {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    opacity: 0.3;
+}
+
+.map-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Logo */
+.logo-container {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+/* Contenido Hero */
+.hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
-    position: relative;
+    margin-top: 80px;
 }
 
-.text-group {
+/* Contenedor de texto dividido */
+.text-split-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    position: relative;
-    margin: 40px 0;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
 .left-text, .right-text {
-    position: absolute;
-    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+    flex: 1;
+    text-align: center;
 }
 
 .left-text {
-    right: 55%;
     text-align: right;
+    padding-right: 40px;
 }
 
 .right-text {
-    left: 55%;
     text-align: left;
+    padding-left: 40px;
 }
 
-.green-line {
-    width: 30%;
-    height: 3px;
+/* Línea vertical */
+.vertical-line {
+    width: 2px;
+    height: 120px;
     background-color: #21A574;
-    margin: 40px 0;
-    transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
-    z-index: 1;
+    margin: 0 20px;
 }
 
-/* Efectos de scroll */
-.scrolled .left-text {
-    right: 52%;
+/* Línea horizontal */
+.horizontal-line {
+    width: 30%;
+    height: 2px;
+    background-color: #21A574;
+    margin: 40px auto;
 }
 
-.scrolled .right-text {
-    left: 52%;
+/* Estilos de texto */
+.revolution-text, .financial-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: #B4DBCA;
 }
 
-.scrolled .green-line {
-    width: 15%;
-    opacity: 0.8;
+.financial-text {
+    color: #21A574;
 }
 
+.now-text, .esverde-text {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.1;
+    color: #B4DBCA;
+}
+
+.green-underline {
+    color: #21A574;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 8px;
+    margin-left: 8px;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: #B4DBCA;
+    max-width: 500px;
+    text-align: center;
+    margin-top: 20px;
+}
 
 /* Sección Quiénes Somos y Propósito */
 .about-purpose-section {
@@ -274,6 +340,29 @@ body {
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .text-split-container {
+        flex-direction: column;
+    }
+    
+    .left-text, .right-text {
+        text-align: center;
+        padding: 0;
+    }
+    
+    .vertical-line {
+        height: 2px;
+        width: 80px;
+        margin: 20px 0;
+    }
+    
+    .revolution-text, .financial-text {
+        font-size: 2.8rem;
+    }
+    
+    .now-text, .esverde-text {
+        font-size: 2.5rem;
+    }
+    
     .content-container {
         flex-direction: column;
     }
@@ -290,16 +379,20 @@ body {
         flex: 1;
     }
     
-    .green-line-horizontal {
-        display: none;
-    }
-    
     .texts-column {
         padding: 0 20px;
     }
 }
 
 @media (max-width: 768px) {
+    .revolution-text, .financial-text {
+        font-size: 2.2rem;
+    }
+    
+    .now-text, .esverde-text {
+        font-size: 2rem;
+    }
+    
     .images-column {
         flex-direction: column;
     }
@@ -318,5 +411,23 @@ body {
     
     .logo {
         height: 60px;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .revolution-text, .financial-text {
+        font-size: 1.8rem;
+    }
+    
+    .now-text, .esverde-text {
+        font-size: 1.6rem;
+    }
+    
+    .horizontal-line {
+        width: 60%;
     }
 }
