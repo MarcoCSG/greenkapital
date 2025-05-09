@@ -32,7 +32,7 @@
             <img src="img/logo.png" alt="Green Kapital" class="logo">
         </div>
         
-<!-- Dentro de tu hero section -->
+<!-- Dentro de hero section -->
 <div class="hero-content">
     <div class="text-split-container">
         <div class="left-section">
@@ -53,7 +53,7 @@
 
   <!-- Sección Quiénes Somos y Propósito -->
 <section class="about-purpose-section">
-    <div class="content-container"> <!-- Este div era el que faltaba -->
+    <div class="content-container">
         <!-- Columna izquierda (imágenes) -->
         <div class="images-column">
             <div class="forest-image top-image">
@@ -104,62 +104,50 @@
         </div>
     </div>
 </section>
-    <!-- Nueva Sección Nuestros Productos -->
-    <section class="products-section">
-        <div class="container">
-            <h2 class="section-title">NUESTROS PRODUCTOS</h2>
-            
-            <div class="products-grid">
-                <!-- Producto 1 -->
-                <div class="product-card">
-                    <h3>Fx Direct</h3>
-                    <p>Diseñado para empresas que buscan operar con mayor flexibilidad y seguridad sus transacciones internacionales.</p>
+
+<!-- Sección de Productos -->
+<section class="products-scroll-section" id="products-scroll">
+    <div class="products-scroll-container">
+        <!-- Contenedor fijo -->
+        <div class="products-fixed-container">
+            <!-- Columna izquierda - Títulos -->
+            <div class="titles-column">
+                <div class="product-title" data-index="0">
+                    <h3>FX Direct</h3>
+                    <div class="title-line"></div>
                 </div>
-                
-                <!-- Producto 2 -->
-                <div class="product-card">
-                    <h3>Fx Plus</h3>
-                    <p>Soluciones avanzadas para comercio exterior con tasas preferenciales y seguimiento en tiempo real.</p>
+                <div class="product-title" data-index="1">
+                    <h3>FX Plus</h3>
+                    <div class="title-line"></div>
                 </div>
-                
-                <!-- Producto 3 -->
-                <div class="product-card">
+                <div class="product-title" data-index="2">
                     <h3>Int Factoring</h3>
-                    <p>Anticipa tus facturas internacionales y mejora tu flujo de efectivo inmediatamente.</p>
+                    <div class="title-line"></div>
                 </div>
-                
-                <!-- Producto 4 -->
-                <div class="product-card">
-                    <h3>Fx Derivatives</h3>
-                    <p>Protege tu empresa contra la volatilidad cambiaria con nuestros instrumentos financieros.</p>
+                <div class="product-title" data-index="3">
+                    <h3>FX Derivates</h3>
+                    <div class="title-line"></div>
                 </div>
-                
-                <!-- Producto 5 -->
-                <div class="product-card">
-                    <h3>Tarjeta Empresarial</h3>
-                    <p>Control total sobre gastos corporativos con reporting detallado y límites personalizados.</p>
-                </div>
-                
-                <!-- Producto 6 -->
-                <div class="product-card">
-                    <h3>Tarjeta Business Green</h3>
-                    <p>Soluciones corporativas ecológicas con beneficios sustentables y recompensas verdes.</p>
-                </div>
-                
-                <!-- Producto 7 -->
-                <div class="product-card">
-                    <h3>Seguros y Fianzas</h3>
-                    <p>Coberturas personalizadas para proteger tu patrimonio empresarial y personal.</p>
-                </div>
-                
-                <!-- Producto 8 -->
-                <div class="product-card">
-                    <h3>Banca Digital</h3>
-                    <p>Plataforma 100% digital con todos los servicios financieros en un solo lugar.</p>
+            </div>
+            
+            <!-- Columna central - Imagen -->
+            <div class="image-column">
+                <img src="img/fx-direct.jpg" alt="FX Direct" class="product-image active" id="product-image">
+            </div>
+            
+            <!-- Columna derecha - Descripción -->
+            <div class="description-column">
+                <div class="product-description active" id="product-description">
+                    <p>Diseñado para empresas que buscan operar con mayor flexibilidad y seguridad sus transacciones internacionales.</p>
+                    <div class="description-line"></div>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <!-- Espacio para el scroll -->
+        <div class="scroll-space"></div>
+    </div>
+</section>
     
     <script src="js/main.js"></script>
 </body>

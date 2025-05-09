@@ -539,3 +539,143 @@ body {
 .video-title:hover {
     transform: scale(1.05);
 }
+
+/* Sección de Productos con Scroll */
+.products-scroll-section {
+    background-color: #000;
+    color: #B4DBCA;
+    position: relative;
+}
+
+.products-scroll-container {
+    height: 400vh; /* Altura suficiente para el scroll */
+    position: relative;
+}
+
+.products-fixed-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Columnas (igual que antes pero con ajustes para scroll) */
+.titles-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    padding: 25px 0;
+    transition: all 0.5s ease;
+}
+
+.product-title h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #A7BFA9;
+    margin: 0;
+    transition: all 0.5s ease;
+}
+
+.product-title.active h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #20A171;
+}
+
+.title-line {
+    height: 1px;
+    background-color: #20A171;
+    margin-top: 20px;
+    width: 80%;
+    opacity: 0.5;
+}
+
+.image-column {
+    flex: 1.5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+.product-image.active {
+    display: block;
+    animation: fadeIn 0.8s ease;
+}
+
+.description-column {
+    flex: 1;
+}
+
+.product-description {
+    display: none;
+    padding: 20px 0;
+    animation: fadeIn 0.8s ease;
+}
+
+.product-description.active {
+    display: block;
+}
+
+.product-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.description-line {
+    height: 1px;
+    background-color: #20A171;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.scroll-space {
+    height: 300vh; /* Espacio para el scroll */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .products-fixed-container {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 50px;
+    }
+    
+    .titles-column {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    
+    .product-title {
+        padding: 15px 20px;
+    }
+    
+    .scroll-space {
+        height: 0;
+    }
+}

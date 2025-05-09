@@ -160,3 +160,118 @@ window.addEventListener('scroll', function() {
         hero.classList.remove('scrolled');
     }
 });
+
+// PRODUCTOS 
+document.addEventListener('DOMContentLoaded', function() {
+    const products = [
+        {
+            title: "FX Direct",
+            image: "img/fx_direct.png",
+            description: "Diseñado para empresas que buscan operar con mayor flexibilidad y seguridad sus transacciones internacionales."
+        },
+        {
+            title: "FX Plus",
+            image: "img/fxplus.png",
+            description: "Soluciones avanzadas para comercio exterior con tasas preferenciales y seguimiento en tiempo real."
+        },
+        {
+            title: "Int Factoring",
+            image: "img/factoring.png",
+            description: "Anticipa tus facturas internacionales y mejora tu flujo de efectivo inmediatamente."
+        },
+        {
+            title: "FX Derivates",
+            image: "img/fx_derivates.png",
+            description: "Protege tu empresa contra la volatilidad cambiaria con nuestros instrumentos financieros."
+        }
+    ];
+
+    const section = document.getElementById('products-scroll');
+    const titles = document.querySelectorAll('.product-title');
+    const productImage = document.getElementById('product-image');
+    const productDescription = document.getElementById('product-description');
+    const scrollSpace = document.querySelector('.scroll-space');
+    
+    // Configuración inicial
+    let currentIndex = 0;
+    let isAnimating = false;
+    
+    // Ajustar el espacio de scroll según la cantidad de productos
+    scrollSpace.style.height = `${(products.length - 1) * 100}vh`;
+    
+    function updateProduct(index) {
+        if (isAnimating || index === currentIndex) return;
+        
+        isAnimating = true;
+        currentIndex = index;
+        
+        // Actualizar clases activas
+        titles.forEach((title, i) => {
+            title.classList.toggle('active', i === index);
+        });
+        
+        // Animación de cambio
+        productImage.classList.remove('active');
+        productDescription.classList.remove('active');
+        
+        setTimeout(() => {
+            productImage.src = products[index].image;
+            productDescription.innerHTML = `<p>${products[index].description}</p><div class="description-line"></div>`;
+            
+            productImage.classList.add('active');
+            productDescription.classList.add('active');
+            
+            isAnimating = false;
+        }, 300); // Tiempo igual a la duración de la transición CSS
+    }
+    
+    function handleScroll() {
+        const scrollY = window.scrollY;
+        const sectionOffset = section.offsetTop;
+        const windowHeight = window.innerHeight;
+        
+        // Solo actuar cuando estemos dentro de la sección
+        if (scrollY < sectionOffset || scrollY > sectionOffset + (products.length * windowHeight)) {
+            return;
+        }
+        
+        const progress = (scrollY - sectionOffset) / windowHeight;
+        const newIndex = Math.min(Math.floor(progress), products.length - 1);
+        
+        if (newIndex !== currentIndex) {
+            updateProduct(newIndex);
+        }
+    }
+    
+    // Inicializar primer producto
+    updateProduct(0);
+    
+    // Evento de scroll optimizado
+    let lastScroll = 0;
+    let ticking = false;
+    
+    window.addEventListener('scroll', function() {
+        lastScroll = window.scrollY;
+        
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                handleScroll();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+    
+    // Click en títulos
+    titles.forEach(title => {
+        title.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-index'));
+            const targetScroll = section.offsetTop + (index * window.innerHeight);
+            
+            window.scrollTo({
+                top: targetScroll,
+                behavior: 'smooth'
+            });
+        });
+    });
+});
