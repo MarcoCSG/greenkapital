@@ -71,25 +71,12 @@ body {
     100% { transform: translateX(-50%); }
 }
 
-/* Hero Section */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding-top: 60px;
-    background-color: #000;
-}
-
 /* Contenedor del mapa */
 .map-container {
     position: absolute;
-    width: 50%;
-    height: 50%;
-    top: 50%;
+    width: 60%;
+    height: 60%;
+    top: 65%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
@@ -117,84 +104,120 @@ body {
     transition: all 0.3s ease;
 }
 
-/* Contenido Hero */
+/* Contenedor principal del texto */
 .hero-content {
     position: relative;
     z-index: 1;
     width: 100%;
+    height: 100vh; /* Asegura que ocupe toda la pantalla */
     display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* Cambiado de center a flex-start */
     align-items: center;
-    margin-top: 80px;
+    padding-top: 30vh; /* Posiciona el contenido más abajo del logo */
 }
 
-/* Contenedor de texto dividido */
 .text-split-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     max-width: 1200px;
-    padding: 0 20px;
+    padding: 0 5%;
+    margin-top: 10vh; /* Espacio adicional desde el logo */
 }
 
-.left-text, .right-text {
-    flex: 1;
-    text-align: center;
-}
-
-.left-text {
-    text-align: right;
-    padding-right: 40px;
-}
-
-.right-text {
+/* Secciones de texto */
+.left-section {
     text-align: left;
-    padding-left: 40px;
+    transform: translateX(-20px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+    flex: 0 0 auto; /* No crece ni se reduce */
+    width: 40%; /* Ancho fijo para mejor alineación */
 }
 
-/* Línea vertical */
-.vertical-line {
-    width: 2px;
-    height: 120px;
-    background-color: #21A574;
-    margin: 0 20px;
+.right-section {
+    text-align: right;
+    transform: translateX(20px);
+    opacity: 0;
+    transition: all 0.8s ease-out;
+    flex: 0 0 auto; /* No crece ni se reduce */
+    width: 30%; /* Ancho fijo para mejor alineación */
 }
 
-/* Línea horizontal */
-.horizontal-line {
-    width: 30%;
+.center-line {
+    flex: 1;
     height: 2px;
     background-color: #21A574;
-    margin: 40px auto;
+    margin: 0 40px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.6s 0.3s ease-out;
 }
 
-/* Estilos de texto */
-.revolution-text, .financial-text {
-    font-size: 3.5rem;
+/* Estilos de texto mejorados */
+.revolution-text {
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 700;
     line-height: 1.1;
     text-transform: uppercase;
     color: #B4DBCA;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .financial-text {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
     color: #21A574;
+    letter-spacing: 1px;
 }
 
-.now-text, .esverde-text {
-    font-size: 3rem;
+.now-text {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
     font-weight: 300;
     line-height: 1.1;
     color: #B4DBCA;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.esverde-text {
+    font-size: clamp(1.8rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: #B4DBCA;
+    letter-spacing: 1px;
 }
 
 .green-underline {
     color: #21A574;
-    text-decoration: underline;
-    text-decoration-thickness: 3px;
-    text-underline-offset: 8px;
-    margin-left: 8px;
+    position: relative;
+    
+}
+
+.green-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #21A574;
+}
+
+/* Estado animado */
+.scrolled .left-section,
+.scrolled .right-section {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.scrolled .center-line {
+    transform: scaleX(1);
 }
 
 .subtitle {
@@ -203,9 +226,81 @@ body {
     color: #B4DBCA;
     max-width: 500px;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 5vh; /* Espacio desde los títulos principales */
 }
 
+/* Responsive mejorado */
+@media (max-width: 1024px) {
+    .hero-content {
+        padding-top: 20vh;
+    }
+    
+    .text-split-container {
+        margin-top: 5vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content {
+        padding-top: 25vh;
+    }
+    
+    .text-split-container {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 5vh;
+    }
+    
+    .left-section, .right-section {
+        text-align: center;
+        width: 100%;
+        transform: translateY(20px);
+    }
+    
+    .scrolled .left-section,
+    .scrolled .right-section {
+        transform: translateY(0);
+    }
+    
+    .center-line {
+        width: 60%;
+        height: 2px;
+        margin: 30px 0;
+        transform: scaleX(0);
+    }
+    
+    .scrolled .center-line {
+        transform: scaleX(1);
+    }
+    
+    .revolution-text, .financial-text {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+    
+    .now-text, .esverde-text {
+        font-size: clamp(1.8rem, 5vw, 2.8rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding-top: 30vh;
+    }
+    
+    .logo {
+        height: 40px;
+    }
+    
+    .center-line {
+        width: 80%;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+        margin-top: 3vh;
+    }
+}
+/* Sección Quiénes Somos y Propósito - Versión mejorada */
 /* Sección Quiénes Somos y Propósito */
 .about-purpose-section {
     padding: 80px 0;
@@ -217,6 +312,8 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
+    gap: 40px;
+    align-items: stretch; /* Asegura que ambas columnas tengan la misma altura */
 }
 
 /* Columna de imágenes */
@@ -224,42 +321,61 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
+    gap: 30px; /* Reemplaza los márgenes individuales */
 }
 
 .forest-image {
-    width: 60%;
-    height: auto;
-    object-fit: cover;
+    width: 100%;
+    height: 0;
+    padding-bottom: 75%; /* Proporción 4:3 (ajusta según necesites) */
+    position: relative;
+    overflow: hidden;
     border-radius: 4px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
-.top-image {
-    margin-bottom: 30px;
+.forest-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
-.bottom-image {
-    margin-top: 30px;
+.forest-image:hover {
+    transform: scale(1.02);
 }
 
 /* Columna de textos */
 .texts-column {
     flex: 1;
-    padding: 0 40px;
-    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Espacio consistente entre bloques */
 }
 
 .text-block {
-    margin-bottom: 60px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .section-title {
-    font-size: 2.2rem;
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
     color: #21A574;
     margin-bottom: 15px;
     font-weight: 700;
     text-transform: uppercase;
+}
+
+.text-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente */
 }
 
 .text-content p {
@@ -279,155 +395,147 @@ body {
     width: 100%;
     height: 2px;
     background-color: #21A574;
-    margin: 40px 0;
 }
 
 .green-line-small {
     width: 80px;
     height: 2px;
     background-color: #21A574;
-    margin: 15px 0 25px;
-}
-
-/* Sección Productos */
-.products-section {
-    padding: 80px 0;
-    background-color: #000;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-.product-card {
-    background-color: rgba(180, 219, 202, 0.05);
-    border: 1px solid rgba(33, 165, 116, 0.3);
-    border-radius: 8px;
-    padding: 30px;
-    transition: all 0.3s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border-color: #21A574;
-}
-
-.product-card h3 {
-    color: #21A574;
-    font-size: 1.5rem;
     margin-bottom: 15px;
-}
-
-.product-card p {
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #B4DBCA;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .text-split-container {
-        flex-direction: column;
-    }
-    
-    .left-text, .right-text {
-        text-align: center;
-        padding: 0;
-    }
-    
-    .vertical-line {
-        height: 2px;
-        width: 80px;
-        margin: 20px 0;
-    }
-    
-    .revolution-text, .financial-text {
-        font-size: 2.8rem;
-    }
-    
-    .now-text, .esverde-text {
-        font-size: 2.5rem;
-    }
-    
     .content-container {
         flex-direction: column;
     }
     
-    .images-column {
-        flex-direction: row;
-        gap: 20px;
+    .forest-image {
+        padding-bottom: 56.25%; /* Proporción 16:9 para tablets */
+    }
+    
+    .text-block {
         margin-bottom: 40px;
-        padding: 0 20px;
-    }
-    
-    .top-image, .bottom-image {
-        margin: 0;
-        flex: 1;
-    }
-    
-    .texts-column {
-        padding: 0 20px;
     }
 }
 
 @media (max-width: 768px) {
-    .revolution-text, .financial-text {
-        font-size: 2.2rem;
+    .about-purpose-section {
+        padding: 60px 0;
     }
     
-    .now-text, .esverde-text {
-        font-size: 2rem;
-    }
-    
-    .images-column {
-        flex-direction: column;
+    .forest-image {
+        padding-bottom: 75%; /* Vuelve a 4:3 para móviles */
     }
     
     .section-title {
         font-size: 1.8rem;
     }
-    
-    .products-grid {
-        grid-template-columns: 1fr;
+}
+
+@media (max-width: 480px) {
+    .forest-image {
+        padding-bottom: 100%; /* Cuadrado para móviles pequeños */
     }
     
-    .hero {
-        padding-top: 120px;
+    .text-content p {
+        font-size: 1rem;
+    }
+}
+
+/* Sección de Video con Títulos */
+.full-width-video-section {
+    width: 100%;
+    background-color: #000;
+    padding: 0;
+    margin: 80px 0;
+    position: relative;
+}
+
+.video-container {
+    width: 100%;
+    max-height: 500px;
+    overflow: hidden;
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3); /* Overlay para mejor legibilidad */
+}
+
+.video-title {
+    color: #20A171;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.video-subtitle {
+    color: #A7BFA9;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .full-width-video-section {
+        margin: 60px 0;
     }
     
-    .logo {
-        height: 60px;
+    .video-container {
+        max-height: 400px;
     }
     
-    .subtitle {
-        font-size: 1.1rem;
+    .video-title {
+        font-size: 2rem;
+    }
+    
+    .video-subtitle {
+        font-size: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .revolution-text, .financial-text {
+    .video-container {
+        max-height: 300px;
+    }
+    
+    .video-title {
         font-size: 1.8rem;
+        letter-spacing: 1px;
     }
     
-    .now-text, .esverde-text {
-        font-size: 1.6rem;
+    .video-subtitle {
+        font-size: 1.2rem;
     }
-    
-    .horizontal-line {
-        width: 60%;
-    }
+}
+
+.video-title {
+    transition: transform 0.3s ease;
+}
+
+.video-title:hover {
+    transform: scale(1.05);
 }

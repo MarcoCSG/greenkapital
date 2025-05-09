@@ -120,32 +120,23 @@ function initAnimations() {
     });
 }
 
-// Animación al hacer scroll
-function handleScroll() {
-    const scrollPosition = window.scrollY;
-    const { hero } = elements;
+document.addEventListener('DOMContentLoaded', function() {
+    const textContainer = document.querySelector('.text-split-container');
     
-    // Controlamos la cantidad de scroll para el efecto (0 a 300px)
-    const scrollEffect = Math.min(scrollPosition, 300) / 300;
-    
-    // Aplicamos transformaciones basadas en el scroll
-    if (elements.leftText && elements.rightText && elements.greenLine) {
-        // Movemos los textos (55% -> 52% cuando scroll completo)
-        elements.leftText.style.right = `${55 - (scrollEffect * 3)}%`;
-        elements.rightText.style.left = `${55 - (scrollEffect * 3)}%`;
+    function checkScroll() {
+        const containerPosition = textContainer.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.5;
         
-        // Reducimos la línea (30% -> 15% cuando scroll completo)
-        elements.greenLine.style.width = `${30 - (scrollEffect * 15)}%`;
-        elements.greenLine.style.opacity = `${1 - (scrollEffect * 0.2)}`;
+        if (containerPosition < screenPosition) {
+            textContainer.classList.add('scrolled');
+        } else {
+            textContainer.classList.remove('scrolled');
+        }
     }
     
-    // Efecto general del hero
-    if (scrollPosition > 50) {
-        hero.classList.add('scrolled');
-    } else {
-        hero.classList.remove('scrolled');
-    }
-}
+    window.addEventListener('scroll', checkScroll);
+    checkScroll(); // Verificar al cargar la página
+});
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
