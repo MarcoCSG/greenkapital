@@ -275,3 +275,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// seccion coming-song
+
+  // Animación al hacer scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const section = document.querySelector('.coming-soon-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('scrolled');
+                    }, 500);
+                } else {
+                    entry.target.classList.remove('scrolled');
+                }
+            });
+        }, {threshold: 0.3});
+        
+        observer.observe(section);
+        
+        // Selección de botones
+        const buttons = document.querySelectorAll('.product-button');
+        buttons.forEach(button => {
+            button.addEventListener('click', function() {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    });
+
+    //propuestas de valor 
+     document.addEventListener('DOMContentLoaded', function() {
+        // Reiniciar animaciones cuando el elemento es visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'none';
+                    setTimeout(() => {
+                        entry.target.style.animation = '';
+                    }, 10);
+                }
+            });
+        }, {threshold: 0.1});
+        
+        document.querySelectorAll('.value-propositions-box, .animate-title, .animate-item, .animate-list-item').forEach(el => {
+            observer.observe(el);
+        });
+    });
