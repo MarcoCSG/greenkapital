@@ -323,3 +323,43 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.observe(el);
         });
     });
+
+    // seccion cominidad y preguntas frecuentes
+
+     document.addEventListener('DOMContentLoaded', function() {
+        // Animación de scroll
+        const section = document.querySelector('.community-section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('scrolled');
+                    }, 500);
+                }
+            });
+        }, {threshold: 0.2});
+        
+        observer.observe(section);
+        
+        // Carrusel automático
+        let currentTestimonial = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        
+        function rotateTestimonials() {
+            testimonials.forEach(t => t.classList.remove('active'));
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            testimonials[currentTestimonial].classList.add('active');
+        }
+        
+        // Cambiar cada 5 segundos
+        setInterval(rotateTestimonials, 5000);
+        
+        // FAQs interactivos
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    });
