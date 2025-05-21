@@ -1205,7 +1205,7 @@ body {
         position: relative;
         min-height: 100vh;
         padding: 80px 20px;
-        color: #333;
+        color: #d6d2d2;
         overflow: hidden;
     }
     
@@ -1290,7 +1290,7 @@ body {
     .faq-header .divider-line { animation-delay: 1.05s; }
     
     .green-text {
-        color: #21A474;
+        color: #236e53;
         font-weight: bold;
     }
     
@@ -1307,7 +1307,7 @@ body {
         position: absolute;
         width: 100%;
         padding: 30px;
-        background: rgb(193, 231, 209);
+        background: rgb(120, 168, 140);
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         text-align: center;
@@ -1454,3 +1454,20 @@ body {
             font-size: 18px;
         }
     }
+
+    /* footer */
+
+    .site-footer {
+    background-color: #c1e6cc;
+    padding: 20px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    border-top: 1px solid #cbe9dc;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
